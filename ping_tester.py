@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # imports
-import os
+from os import system
 from time import sleep
 from time import ctime
 
