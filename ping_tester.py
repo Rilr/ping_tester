@@ -15,7 +15,7 @@ hostnames = [
 while True:
     for hostname in hostnames:
         sleep(30)
-        response = os.system('ping -n 3 ' + hostname)
+        response = system('ping -n 3 ' + hostname)
         if response == 0:
             print(hostname + ' is up')
         else:
