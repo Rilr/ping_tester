@@ -1,22 +1,22 @@
 #!/usr/bin/python3
 
 # imports
-import subprocess
+import os
+from time import sleep
+from time import ctime
 
 # definitions
-outside = ""
-gateway = ""
+hostnames = [
+    '192.168.0.1',
+    '8.8.8.8',
+]
 
-# ping address, see if we can can do more than one.
-# we need to ping google, 8.8.8.8, and the default gateway, 192.168.1.1
-for ping in range(1,10):
-    address = "127.0.0." + str(ping)
-    res = subprocess.Popen(['ping', '-c', '3', address])
-    if res == 0:
-        print("ping to", address, "OK")
-    elif res == 2:
-        # output bad pings to file
-        print("no response from", address)
-    else:
-        # output bad pings to file
-        print("ping to", address, "failed!")
+# loop through the list
+while True:
+    for hostname in hostnames:
+        sleep(30)
+        response = os.system('ping -n 3 ' + hostname)
+        if response == 0:
+            print(hostname + ' is up')
+        else:
+            print(ctime() + ": " + hostname + ' is down.', file=open("output.txt", "a"))
